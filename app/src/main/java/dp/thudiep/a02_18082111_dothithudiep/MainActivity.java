@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         playerDuration =findViewById(R.id.playerDuration);
         playerPosition =findViewById(R.id.playerPosition);
 
-//        Animation xoay = AnimationUtils.loadAnimation(this,R.anim.anim_taylor);
-//        Animation dung = AnimationUtils.loadAnimation(this,R.anim.anim_taylor_dung);
+        Animation xoay = AnimationUtils.loadAnimation(this,R.anim.anim_taylor);
+        Animation dung = AnimationUtils.loadAnimation(this,R.anim.anim_taylor_dung);
 
         song = new Song("Love yourseft","Justin Biber",R.drawable.song1,R.raw.phiasau);
         if(song != null) {
@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
                         play.setImageResource(R.drawable.stop);
 
                         //animation
-//                        imageView.startAnimation(dung);
+                        imageView.startAnimation(dung);
                     }else{
                         clickStartService();
                         mMediaPlayer.start();
                         play.setImageResource(R.drawable.play);
 
                         //animation
-//                        imageView.startAnimation(xoay);
+                        imageView.startAnimation(xoay);
                     }
                     SongNames();
                 }
