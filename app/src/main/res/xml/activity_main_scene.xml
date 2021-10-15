@@ -40,10 +40,11 @@
             android:layout_height="wrap_content"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="340dp"
+            android:layout_width="345dp"
             android:id="@+id/textView4"
             motion:layout_constraintTop_toBottomOf="@+id/textViewSinger"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="15dp"
+            motion:layout_constraintHorizontal_bias="0.591" />
         <Constraint
             android:layout_height="wrap_content"
             motion:layout_constraintStart_toStartOf="parent"
@@ -91,7 +92,7 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:id="@+id/textTitle"
             motion:layout_constraintTop_toBottomOf="@+id/imageView"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="10dp" />
         <Constraint
             android:layout_height="wrap_content"
             motion:layout_constraintStart_toStartOf="parent"
@@ -101,5 +102,21 @@
             motion:layout_constraintHorizontal_bias="0.513"
             motion:layout_constraintTop_toTopOf="@+id/view"
             android:layout_marginTop="20dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="@+id/seekBar"
+            motion:layout_constraintBottom_toTopOf="@+id/seekBar"
+            motion:layout_constraintHorizontal_bias="0.917"
+            motion:layout_constraintEnd_toEndOf="@+id/seekBar"
+            android:layout_width="wrap_content"
+            android:id="@+id/playerDuration" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="@+id/seekBar"
+            motion:layout_constraintBottom_toTopOf="@+id/seekBar"
+            motion:layout_constraintHorizontal_bias="0.061"
+            motion:layout_constraintEnd_toEndOf="@+id/seekBar"
+            android:layout_width="wrap_content"
+            android:id="@+id/playerPosition" />
     </ConstraintSet>
 </MotionScene>
