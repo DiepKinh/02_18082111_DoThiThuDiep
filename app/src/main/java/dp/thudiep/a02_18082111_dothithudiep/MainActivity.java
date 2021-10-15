@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             mMediaPlayer = MediaPlayer.create(getApplicationContext(), song.getResourece());//cai lenh nay failed ne Dip
 
 //             time
-//            playerDuration.setText(convertFormat(mMediaPlayer.getDuration()));
+            playerDuration.setText(convertFormat(mMediaPlayer.getDuration()));
             mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -93,19 +93,19 @@ public class MainActivity extends AppCompatActivity {
                         //animation
 //                        imageView.startAnimation(xoay);
                     }
-//                    SongNames();
+                    SongNames();
                 }
 
             }
 
         });
     }
-//    private String convertFormat(int duration) {
-//        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(duration),
-//                TimeUnit.MILLISECONDS.toSeconds(duration) -
-//                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
-//    }
-//
+    private String convertFormat(int duration) {
+        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(duration),
+                TimeUnit.MILLISECONDS.toSeconds(duration) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
+    }
+
 //    private void clickStartService() {
 //        Intent intent = new Intent(this, MyService.class);
 //        Bundle bundle = new Bundle();
@@ -122,69 +122,68 @@ public class MainActivity extends AppCompatActivity {
 //        stopService(intent);
 //    }
 //
-//    private void SongNames(){
-////        Song song = mSongs.get(currentIndex);
-//        imageView.setImageResource(song.getImageSong());
-//        songTitle.setText(song.getTitle());
-//        songSinger.setText(song.getSingle());
-//
-//        //seek bar duration
-//        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mSeekBarTime.setMax(mMediaPlayer.getDuration());
-//                mMediaPlayer.start();
-//            }
-//        });
-//
-//        mSeekBarTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                if (fromUser){
-//                    mMediaPlayer.seekTo(progress);
-//                    mSeekBarTime.setProgress(progress);
-//                }
-//                playerPosition.setText(convertFormat(mMediaPlayer.getCurrentPosition()));
-//
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (mMediaPlayer!= null){
-//                    try {
-//                        if(mMediaPlayer.isPlaying()){
-//                            Message message = new Message();
-//
-//                            message.what = mMediaPlayer.getCurrentPosition();
-//                            handler.sendMessage(message);
-//                            Thread.sleep(1000);
-//                        }
-//                    }catch (InterruptedException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
-//    }
-//
-//
-//    @SuppressLint("Handle Leak")
-//    Handler handler = new Handler () {
-//        @Override
-//        public void handleMessage (Message msg) {
-//            mSeekBarTime.setProgress(msg.what);
-//        }
-//    };
+    private void SongNames(){
+        imageView.setImageResource(song.getImageSong());
+        songTitle.setText(song.getTitle());
+        songSinger.setText(song.getSingle());
+
+        //seek bar duration
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mSeekBarTime.setMax(mMediaPlayer.getDuration());
+                mMediaPlayer.start();
+            }
+        });
+
+        mSeekBarTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    mMediaPlayer.seekTo(progress);
+                    mSeekBarTime.setProgress(progress);
+                }
+                playerPosition.setText(convertFormat(mMediaPlayer.getCurrentPosition()));
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mMediaPlayer!= null){
+                    try {
+                        if(mMediaPlayer.isPlaying()){
+                            Message message = new Message();
+
+                            message.what = mMediaPlayer.getCurrentPosition();
+                            handler.sendMessage(message);
+                            Thread.sleep(1000);
+                        }
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+
+    @SuppressLint("Handle Leak")
+    Handler handler = new Handler () {
+        @Override
+        public void handleMessage (Message msg) {
+            mSeekBarTime.setProgress(msg.what);
+        }
+    };
 
 }
