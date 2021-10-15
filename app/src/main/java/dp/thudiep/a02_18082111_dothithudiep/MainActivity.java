@@ -79,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     mSeekBarTime.setMax(mMediaPlayer.getDuration());
                     if(mMediaPlayer!=null && mMediaPlayer.isPlaying()){
-//                        clickStopService();
+                        clickStopService();
                         mMediaPlayer.pause();
                         play.setImageResource(R.drawable.stop);
 
                         //animation
 //                        imageView.startAnimation(dung);
                     }else{
-//                        clickStartService();
+                        clickStartService();
                         mMediaPlayer.start();
                         play.setImageResource(R.drawable.play);
 
@@ -106,22 +106,22 @@ public class MainActivity extends AppCompatActivity {
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
     }
 
-//    private void clickStartService() {
-//        Intent intent = new Intent(this, MyService.class);
-//        Bundle bundle = new Bundle();
-//
-////        Song song = mSongs.get(currentIndex);
-//        bundle.putSerializable("object_song",song);
-//        intent.putExtras(bundle);
-//
-//        startService(intent);
-//    }
-//
-//    private void clickStopService() {
-//        Intent intent = new Intent(this, MyService.class);
-//        stopService(intent);
-//    }
-//
+    private void clickStartService() {
+        Intent intent = new Intent(this, MyService.class);
+        Bundle bundle = new Bundle();
+
+//        Song song = mSongs.get(currentIndex);
+        bundle.putSerializable("object_song",song);
+        intent.putExtras(bundle);
+
+        startService(intent);
+    }
+
+    private void clickStopService() {
+        Intent intent = new Intent(this, MyService.class);
+        stopService(intent);
+    }
+
     private void SongNames(){
         imageView.setImageResource(song.getImageSong());
         songTitle.setText(song.getTitle());
